@@ -1,0 +1,23 @@
+{
+  "name": "superhero-match",
+  "version": "1.0.0",
+  "description": "A superhero dating website.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jwkeena/superhero-match.git"
+  },
+  "author": "justin keena",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jwkeena/superhero-match/issues"
+  },
+  "homepage": "https://github.com/jwkeena/superhero-match#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
