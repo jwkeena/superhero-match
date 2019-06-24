@@ -71,7 +71,8 @@
 
 
         <h3><strong>Question 4</strong></h3>
-        <h4>You're looking for a long-term relationship with someone other than your goofy, inept, vaguely asexual sidekick.</h4>
+        <h4>You're looking for a long-term relationship with someone other than your goofy, inept, vaguely asexual
+            sidekick.</h4>
         <select class="chosen-select" id="q4">
             <option value=""></option>
             <option value="1">1 (Strongly Disagree)</option>
@@ -141,7 +142,9 @@
         </select>
 
         <h3><strong>Question 10</strong></h3>
-        <h4>You tend to wear a flamboyant outfit in public, have nice teeth and perfect hair even in the heat of battle, and enjoy witty repartee with your archnemesis right after listening to their monologue about how to take over the world.</h4>
+        <h4>You tend to wear a flamboyant outfit in public, have nice teeth and perfect hair even in the heat of battle,
+            and enjoy witty repartee with your archnemesis right after listening to their monologue about how to take
+            over the world.</h4>
         <select class="chosen-select" id="q10">
             <option value=""></option>
             <option value="1">1 (Strongly Disagree)</option>
@@ -182,7 +185,8 @@
                 <div class="modal-body">
                     <h2 id="match-name"></h2>
                     <img id="match-img"
-                        src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg" alt="">
+                        src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                        alt="">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -193,8 +197,38 @@
     </div>
 
     <script type="text/javascript">
+        // Grabs user input when the form is submitted, turns it into a JS object, sends it to api route for JSONification and comparison
+        $(document).ready(function () {
+            $("#submit").on("click", function (e) {
+                e.preventDefault();
 
+                // Create new object with user data
+                let profile = {
+                    name: $("#name").val().trim(),
+                    photo: $("#photo").val().trim(),
+                    surveyAnswers: [$("#q1").find(":selected").attr("value"),
+                        $("#q1").find(":selected").attr("value"),
+                        $("#q2").find(":selected").attr("value"),
+                        $("#q3").find(":selected").attr("value"),
+                        $("#q4").find(":selected").attr("value"),
+                        $("#q5").find(":selected").attr("value"),
+                        $("#q6").find(":selected").attr("value"),
+                        $("#q7").find(":selected").attr("value"),
+                        $("#q8").find(":selected").attr("value"),
+                        $("#q9").find(":selected").attr("value"),
+                        $("#q10").find(":selected").attr("value")
+                    ]
+                }
 
+                console.log(profile);
+
+                $.post("/api/singles", profile)
+                .then(function(data) {
+                    console.log(data);
+                })
+
+            })
+        })
     </script>
 
 </body>

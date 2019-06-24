@@ -7,7 +7,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Gets routing information from the relevant files
-require("./app/routing/apiRoutes.js")(app); // API routing must be loaded before the html routing
+require("./app/routing/apiRoutes.js")(app); 
+// API routing must be loaded before the html routing since the html routing has the catch-all, default route (which would grab the request for an api route and redirect it to the homepage!)
 require("./app/routing/htmlRoutes.js")(app);
 
 // Starts the server
