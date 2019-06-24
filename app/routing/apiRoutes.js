@@ -8,6 +8,7 @@ module.exports = function (app) {
 
     app.post("/api/singles", function (req, res) {
         singles.push(req.body);
+        return res.json("Profile successfully stored.")
     })
 
 }
