@@ -1,5 +1,4 @@
 const express = require("express");
-const path = require("path");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -7,12 +6,11 @@ const PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Routes
-app.get("/", function(req, res) {
-    res.sendFile(path.join(__dirname, "./app/public/home.html"));
-});
+// Gets routing information from the relevant files
+require("./app/routing/apiRoutes.js")(app); // API routing must be loaded before the html routing
+require("./app/routing/htmlRoutes.js")(app);
 
 // Starts the server
 app.listen(PORT, function() {
-    console.log("Table reservation app listening on PORT " + PORT);
+    console.log("Superhero Singles app listening on PORT " + PORT);
   });
