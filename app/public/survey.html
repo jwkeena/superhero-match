@@ -10,9 +10,6 @@
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-    <!-- Font Awesome Glyphicons -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-
     <!-- Chosen -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js"></script>
@@ -71,7 +68,8 @@
 
 
         <h3><strong>Question 4</strong></h3>
-        <h4>You're looking for a long-term relationship with someone other than your goofy, inept, vaguely asexual sidekick.</h4>
+        <h4>You're looking for a long-term relationship with someone other than your goofy, inept, vaguely asexual
+            sidekick.</h4>
         <select class="chosen-select" id="q4">
             <option value=""></option>
             <option value="1">1 (Strongly Disagree)</option>
@@ -176,16 +174,16 @@
         <div class="modal-dialog">
 
             <!-- Modal content-->
-            <div class="modal-content">
+            <div class="modal-content text-center">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h2 class="modal-title"><strong>Best Match</strong></h2>
+                    <h2 class="modal-title"><strong>Your Dream Date Is...</strong></h2>
                 </div>
                 <div class="modal-body">
                     <h2 id="match-name"></h2>
-                    <img id="match-img"
-                        src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
-                        alt="">
+                    <img id="match-img" style="width: 75%;" src="" alt="A saucy picture of your next hot date.">
+                    <br>
+                    <p id="message"></p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -194,6 +192,9 @@
 
         </div>
     </div>
+
+    <button id="modal-button" style="display: none" type="button" class="btn btn-primary" data-toggle="modal"
+        data-target="#results-modal"></button>
 
     <script type="text/javascript">
         // Grabs user input when the form is submitted, turns it into a JS object, sends it to api route for JSONification and comparison
@@ -222,9 +223,18 @@
                 console.log(profile);
 
                 $.post("/api/singles", profile)
-                .then(function(data) {
-                    console.log(data);
-                })
+                    .then(function (data) {
+                        console.log(data);
+                        console.log(data.name);
+                        console.log(data.photo);
+
+                        // Open modal with result of the closest match
+                        $("#modal-button").click();
+                        $("#match-name").text(data.name);
+                        $("#message").text(data.message);
+                        $("#match-img").attr("src", data.photo);
+
+                    })
 
             })
         })
