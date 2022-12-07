@@ -8,7 +8,7 @@ Node, Express, Bootstrap
 Built to learn form submissions and algorithm building. This is a survey-based dating website, which matches you with your dream superhero date. Designed for desktop, but mobile-compatible.
 
 # try it yourself!
-https://sheltered-scrubland-25190.herokuapp.com/
+https://superherosingles.onrender.com/
 
 ![](superhero-dating.png)
 
